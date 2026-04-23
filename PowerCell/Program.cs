@@ -1,56 +1,43 @@
-﻿using System;
+using System;
+using System.Globalization;
 
-namespace PlayerStats
+namespace PowerCell
 {
     public class Program
     {
-        private static void Main()
+        // Argumentos:
+        // args[0]: Nome da célula
+        // args[1]: Número de consumos
+        // args[2]: Quantidade de energia a consumir por operação
+        private static void Main(string[] args)
         {
-            Player[] players = {
-                new Player("Ana"),
-                new Player("Zé"),
-                new Player("Doesn't play")
-            };
+            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
 
-            players[0].PlayGame(false);
-            players[0].PlayGame(true);
-            players[0].PlayGame(true);
-            players[0].PlayGame(false);
-            players[0].PlayGame(false);
-            players[0].PlayGame(true);
-            players[0].HighScore = 123;
-            players[0].HighScore = 40;
+            string name = args[0];
+            int n = int.Parse(args[1]);
+            float amount = float.Parse(args[2]);
 
-            players[1].PlayGame(true);
-            players[1].PlayGame(true);
-            players[1].HighScore = 12;
-            players[1].HighScore = 67;
-            players[1].HighScore = 91;
-            players[1].HighScore = 32;
+            // Cria uma Nova Célula com o Nome Fornecido
+            Cell c = new Cell(name);
 
-            foreach (Player player in players)
-            {
-                Console.WriteLine($" Player name : {player.Name}");
-                Console.WriteLine($"    Win rate : {player.WinRate}");
-                Console.WriteLine($"  High score : {player.HighScore}");
-                Console.WriteLine("--------------------------------");
-            }
+            // Mostra o Estado Inicial da Célula
+            Console.WriteLine(c);
 
-            // Output deve ser:
+            // Consome a Célula n Vezes
+            for (int i = 0; i < n; i++) c.Consume(amount);
+
+            // Mostra o Estado Após os Consumos
+            Console.WriteLine(c);
+
+            // Restaura a Célula e Mostra o Estado Final
+            c.Restore();
+            Console.WriteLine(c);
+
+            // Este programa mostra o seguinte no ecrã (exemplo: Apollo 3 60):
             //
-            //  Player name : Ana
-            //     Win rate : 0.5
-            //   High score : 123
-            // --------------------------------
-            //  Player name : Zé
-            //     Win rate : 1
-            //   High score : 91
-            // --------------------------------
-            //  Player name : Doesn't play
-            //     Win rate : 0
-            //   High score : 0
-            // --------------------------------
-
+            // [Apollo] Level 6: 200/200
+            // [Apollo] Level 1: 20/200
+            // [Apollo] Level 6: 200/200
         }
     }
 }
