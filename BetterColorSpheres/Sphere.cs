@@ -1,12 +1,11 @@
-using System.Runtime.Intrinsics.X86;
-
-namespace ColorSpheres
+namespace BetterColorSpheres
 {
     public class Sphere
     {
         private readonly string cor;
         private int raio;
         private int vezesAtirada;
+
         public Sphere(string cor, int raio, int vezesAtirada)
         {
             this.cor = cor;
@@ -24,20 +23,26 @@ namespace ColorSpheres
         {
             vezesAtirada += 1;
         }
-        public string GetTimesThrown()
+        public string TimesThrown
         {
-            if(raio != 0)
+            get
             {
-                return $"A bola foi atirada {vezesAtirada} vezes";
-            }else
-            {
-                return "A bola foi furada!";
+                if(raio != 0)
+                {
+                    return $"A bola foi atirada {vezesAtirada} vezes";
+                }
+                else
+                {
+                    return "A bola foi furada!";
+                }
             }
         }
-
-        public string Estado()
+        public string Estado
         {
-            return $"{cor} {raio} {vezesAtirada}";
+            get
+            {
+                return $"{cor} {raio} {vezesAtirada}";
+            }
         }
     }
 }

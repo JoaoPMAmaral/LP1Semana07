@@ -20,17 +20,21 @@ namespace ColorSpheres
             Sphere esfera = new Sphere(cor.GetRGB(),20,0);
             Sphere esfera2 = new Sphere(cor.GetRGB(),30,20);
 
+            Console.WriteLine("Esfera 1");
             Console.WriteLine(esfera.GetTimesThrown());
             esfera.Throw();
             Console.WriteLine(esfera.GetTimesThrown());
+            Console.WriteLine(esfera.Estado());
             
 
+            Console.WriteLine("Esfera 2");
             Console.WriteLine(esfera2.GetTimesThrown());
             esfera2.Throw();
             Console.WriteLine(esfera2.GetTimesThrown());
             esfera2.Pop();
             esfera2.Throw();
             Console.WriteLine(esfera2.GetTimesThrown());
+            Console.WriteLine(esfera2.Estado());
         }
     }
 }
