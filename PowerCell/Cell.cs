@@ -3,16 +3,36 @@ namespace PowerCell
     public class Cell
     {
         private float charge;
-        public string Name{get;}
-        public float Charge;
-        public int Level{get;}
+        public string Name{get;}        
 
-        public Cell(string Name, float Charge)
+        public Cell(string Name)
         {
             this.Name = Name;
-            this.Charge = 200;
+            Charge = 200;
         }
 
+        public float Charge
+        {
+            get
+            {
+                return charge;
+            }
+            set
+            {
+                charge = value;
+            }
+        }
+        public int Level
+        {
+            set
+            {
+                value = 1 + int.Parse(charge) / 40;
+            }
+            get
+            {
+                return Level;
+            }
+        }
         public void Consume(float ammount)
         {
             Charge -= ammount;
@@ -20,6 +40,11 @@ namespace PowerCell
         public void Restore()
         {
             Charge = 200;
+        }
+
+        public override string ToString()
+        {
+            return $"[{Name}] Level {Level}: {Charge:F0}/200";
         }
     }
 }
