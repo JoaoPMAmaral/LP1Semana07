@@ -1,45 +1,47 @@
+using System;
+
 namespace PowerCell
 {
     public class Cell
     {
         private float charge;
-        public string Name{get;}        
+        public string Name{get;}
 
         public Cell(string Name)
         {
             this.Name = Name;
-            Charge = 200;
+            charge = 200;
         }
 
         public float Charge
         {
             get
             {
-                return charge;
-            }
-            set
-            {
-                charge = value;
+                if(charge >= 0 && charge <= 200)
+                {
+                    return charge;
+                }
+                else
+                {
+                    return 0;
+                }
+
             }
         }
         public int Level
         {
-            set
-            {
-                value = 1 + int.Parse(charge) / 40;
-            }
             get
             {
-                return Level;
+                return 1 + Convert.ToInt32(Charge) / 40;
             }
         }
         public void Consume(float ammount)
         {
-            Charge -= ammount;
+            charge -= ammount;
         }
         public void Restore()
         {
-            Charge = 200;
+            charge = 200;
         }
 
         public override string ToString()
